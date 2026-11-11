@@ -185,4 +185,3 @@ def add_age_group(df):
     )
 
     return result
-
