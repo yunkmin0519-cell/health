@@ -40,10 +40,19 @@ with col1:
     )
 
 with col2:
+    age_order = [
+        "20대 이하",
+        "30대",
+        "40대",
+        "50대",
+        "60대",
+        "70대 이상"
+    ]
+
     ages = st.multiselect(
         "연령대 선택",
-        options=list(df["연령대"].dropna().unique()),
-        default=list(df["연령대"].dropna().unique())
+        options=age_order,
+        default=age_order
     )
 
 filtered = df[
@@ -96,6 +105,7 @@ fig = px.box(
     y=selected_metric,
     color="성별",
     points="outliers",
+    category_orders={"연령대": age_order},
     title=f"연령대별 {selected_metric} 분포"
 )
 
@@ -153,4 +163,3 @@ st.dataframe(
     ].describe().T.round(2),
     use_container_width=True
 )
-
